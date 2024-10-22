@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pic_point/admin/auth/register_screen.dart';
 import 'package:pic_point/admin/home/admin_home_screen.dart';
+import 'package:pic_point/admin/home/home_screen.dart';
 import 'package:pic_point/app_theme.dart';
 import 'package:pic_point/widgets/deafult_elevated_botton.dart';
 import 'package:pic_point/widgets/deafult_text_form_field.dart';
@@ -79,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               DeafaultElevetedBotton(
                 label: 'Login',
                 onPressed: () {
-                  Navigator.pushNamed(context, AdminHomeScreen.id);
+                  Navigator.pushNamed(context, HomeScreen.id);
                 },
               ),
               Center(
