@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pic_point/admin/auth/login_screen.dart';
 import 'package:pic_point/admin/auth/register_screen.dart';
 import 'package:pic_point/admin/home/add_place_screen.dart';
@@ -10,10 +11,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
-
- 
+  
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -28,6 +27,15 @@ class PicPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      locale: const Locale('ar'), 
+      supportedLocales: const [
+        Locale('ar'), 
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       routes: {
         LoginScreen.id: (context) => const LoginScreen(),
         AdminHomeScreen.id: (context) => const AdminHomeScreen(),

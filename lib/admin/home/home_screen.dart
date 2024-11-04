@@ -15,16 +15,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, String>> places = [
     {
-      'name': 'Building A',
-      'details': 'Main building, floor 1',
-      'location': 'Kuwait University, Building A',
+      'name': 'مبنى A',
+      'details': 'المبنى الرئيسي، الطابق الأول',
+      'location': 'جامعة الكويت، مبنى A',
       'image':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s' // Replace with actual image URL
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s' 
     },
     {
-      'name': 'Room 101',
-      'details': 'Located in Building B, ground floor',
-      'location': 'Kuwait University, Building B',
+      'name': 'غرفة 101',
+      'details': 'تقع في مبنى B، الطابق الأرضي',
+      'location': 'جامعة الكويت، مبنى B',
       'image':
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s' // Replace with actual image URL
     },
@@ -34,84 +34,89 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('الرئيسية'),
       ),
-      body: ListView.builder(
-        itemCount: places.length,
-        itemBuilder: (context, index) {
-          return Card(
-            elevation: 4.0,
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      places[index]['image'] ?? '',
-                      width: double.infinity,
-                      height: 180,
-                      fit: BoxFit.cover,
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: ListView.builder(
+          itemCount: places.length,
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 4.0,
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        places[index]['image'] ?? '',
+                        width: double.infinity,
+                        height: 180,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    places[index]['name'] ?? '',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    places[index]['details'] ?? '',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: AppTheme.black,
-                        ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextButton(
-                    onPressed: () async {
-                      final location = places[index]['location'] ?? '';
-                      final Uri url = Uri.parse(
-                          'https://www.google.com/maps/search/?api=1&query=$location');
-                      if (!await launchUrl(url)) {
-                        throw Exception('Could not launch $url');
-                      }
-                    },
-                    child: const Text('View on Maps'),
-                  ),
-                  const SizedBox(height: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Add comment...',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(color: Colors.grey),
+                    const SizedBox(height: 10),
+                    Text(
+                      places[index]['name'] ?? '',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      places[index]['details'] ?? '',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            color: AppTheme.black,
+                          ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () async {
+                        final location = places[index]['location'] ?? '';
+                        final Uri url = Uri.parse(
+                            'https://www.google.com/maps/search/?api=1&query=$location');
+                        if (!await launchUrl(url)) {
+                          throw Exception('تعذر فتح الرابط $url');
+                        }
+                      },
+                      child: const Text('عرض على الخريطة'),
+                    ),
+                    const SizedBox(height: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: 'أضف تعليقًا...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: const BorderSide(color: Colors.grey),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      DeafaultElevetedBotton(label: 'Submit', onPressed: () {}),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, PlaceDetailsScreen.id);
-                      },
-                      child: const Text('View Comments'),
+                        const SizedBox(height: 10),
+                        DeafaultElevetedBotton(label: 'إرسال', onPressed: () {}),
+                      ],
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, PlaceDetailsScreen.id,
+                          arguments: places[index]['image'],
+                          );
+                        },
+                        child: const Text('عرض التعليقات'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

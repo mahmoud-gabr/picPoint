@@ -14,18 +14,18 @@ class AdminHomeScreen extends StatefulWidget {
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
   final List<Map<String, String>> places = [
     {
-      'name': 'Building A',
-      'details': 'Main building, floor 1',
-      'location': 'Kuwait University, Building A',
+      'name': 'مبنى A',
+      'details': 'المبنى الرئيسي، الطابق الأول',
+      'location': 'جامعة الكويت، مبنى A',
       'image':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s' // Replace with actual image URL
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s'
     },
     {
-      'name': 'Room 101',
-      'details': 'Located in Building B, ground floor',
-      'location': 'Kuwait University, Building B',
+      'name': 'غرفة 101',
+      'details': 'تقع في مبنى B، الطابق الأرضي',
+      'location': 'جامعة الكويت، مبنى B',
       'image':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s' // Replace with actual image URL
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV6y5vF1OvsPHX0d1nuVo0bi8IT8Yf_20PKw&s'
     },
   ];
 
@@ -33,93 +33,96 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('الرئيسية'),
       ),
-      body: ListView.builder(
-        itemCount: places.length,
-        itemBuilder: (context, index) {
-          return SizedBox(
-            height: 160,
-            child: Card(
-              elevation: 4,
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        places[index]['image'] ?? '',
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: ListView.builder(
+          itemCount: places.length,
+          itemBuilder: (context, index) {
+            return SizedBox(
+              height: 160,
+              child: Card(
+                elevation: 4,
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          places[index]['image'] ?? '',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 15),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            places[index]['name'] ?? '',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            places[index]['details'] ?? '',
-                            maxLines: 2,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(
-                                  color: AppTheme.grey,
-                                ),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              final url = Uri.parse(
-                                  'https://www.google.com/maps/search/?api=1&query=${places[index]['location']}');
-                              if (!await launchUrl(url)) {
-                                throw Exception('Could not launch $url');
-                              }
-                            },
-                            child: Text(
-                              'View on Maps',
+                      const SizedBox(width: 15),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              places[index]['name'] ?? '',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              places[index]['details'] ?? '',
+                              maxLines: 2,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall!
                                   .copyWith(
-                                    color: AppTheme.primary,
+                                    color: AppTheme.grey,
                                   ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.delete, color: AppTheme.red),
-                          onPressed: () {},
+                            TextButton(
+                              onPressed: () async {
+                                final url = Uri.parse(
+                                    'https://www.google.com/maps/search/?api=1&query=${places[index]['location']}');
+                                if (!await launchUrl(url)) {
+                                  throw Exception('تعذر فتح الرابط $url');
+                                }
+                              },
+                              child: Text(
+                                'عرض على الخريطة',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(
+                                      color: AppTheme.primary,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, AddPlaceScreen.id);
-                          },
-                          icon: Icon(
-                            Icons.edit,
-                            color: AppTheme.primary,
+                      ),
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.delete, color: AppTheme.red),
+                            onPressed: () {},
                           ),
-                        )
-                      ],
-                    )
-                  ],
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, AddPlaceScreen.id);
+                            },
+                            icon: Icon(
+                              Icons.edit,
+                              color: AppTheme.primary,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

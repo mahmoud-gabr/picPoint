@@ -30,22 +30,18 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   }
 
   Future<void> _pickLocation() async {
-    final selectedLocation = 'Kuwait University';
+    final selectedLocation = 'جامعة الكويت';
     setState(() {
       _location = selectedLocation;
     });
   }
 
   void _savePlace() {
-    // Implement the logic to save the place, for example:
-    // - Upload the image to a server or storage
-    // - Save the place details to your database (Firebase Realtime Database)
-    print('Name: ${_nameController.text}');
-    print('Details: ${_detailsController.text}');
-    print('Image Path: $_imagePath');
-    print('Location: $_location');
+    print('اسم المكان: ${_nameController.text}');
+    print('التفاصيل: ${_detailsController.text}');
+    print('مسار الصورة: $_imagePath');
+    print('الموقع: $_location');
 
-    // After saving, you can navigate back or show a success message
     Navigator.pop(context);
   }
 
@@ -53,72 +49,69 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Place'),
+        title: const Text('إضافة مكان'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const Spacer(
-              flex: 1,
-            ),
-            DeafaultTextFormField(
-              controller: _nameController,
-              label: 'Place Name',
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            DeafaultTextFormField(
-              controller: _detailsController,
-              label: 'details',
-            ),
-            const SizedBox(height: 16),
-            GestureDetector(
-              onTap: _pickImage,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                height: 150,
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: _imagePath == null
-                    ? const Text('Tap to select an image')
-                    : Image.file(
-                        File(_imagePath!),
-                        fit: BoxFit.cover,
-                      ),
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              const Spacer(flex: 1),
+              DeafaultTextFormField(
+                controller: _nameController,
+                label: 'اسم المكان',
               ),
-            ),
-            const SizedBox(height: 16),
-            GestureDetector(
-              onTap: _pickLocation,
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Text(
-                  _location ?? 'Tap to select a location',
-                  style: const TextStyle(color: Colors.black54),
+              const SizedBox(height: 16),
+              DeafaultTextFormField(
+                controller: _detailsController,
+                label: 'التفاصيل',
+              ),
+              const SizedBox(height: 16),
+              GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  height: 150,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: _imagePath == null
+                      ? const Text('اضغط لاختيار صورة')
+                      : Image.file(
+                          File(_imagePath!),
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: 140,
-              child: DeafaultElevetedBotton(
-                onPressed: _savePlace,
-                label: 'Save Place',
+              const SizedBox(height: 16),
+              GestureDetector(
+                onTap: _pickLocation,
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Text(
+                    _location ?? 'اضغط لاختيار موقع',
+                    style: const TextStyle(color: Colors.black54),
+                  ),
+                ),
               ),
-            ),
-            const Spacer(
-              flex: 6,
-            ),
-          ],
+              const SizedBox(height: 16),
+              SizedBox(
+                width: 140,
+                child: DeafaultElevetedBotton(
+                  onPressed: _savePlace,
+                  label: 'حفظ المكان',
+                ),
+              ),
+              const Spacer(flex: 6),
+            ],
+          ),
         ),
       ),
     );
