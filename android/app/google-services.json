@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146555961059",
+    "project_id": "picpoint-7b4fa",
+    "storage_bucket": "picpoint-7b4fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146555961059:android:ff57a7b80b9e9f5238cfd6",
+        "android_client_info": {
+          "package_name": "com.example.pic_point"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv4JfEGhwtB6rdrf-3nbgd9YT7EvTYItg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
