@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pic_point/app_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:pic_point/widgets/deafult_elevated_botton.dart'; // Import your button widget
+import 'package:pic_point/widgets/deafult_elevated_botton.dart'; 
 
 class PlaceDetailsScreen extends StatefulWidget {
   static const String id = '/PlaceDetailsScreen';

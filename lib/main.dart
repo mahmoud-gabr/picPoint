@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pic_point/admin/auth/login_screen.dart';
-import 'package:pic_point/admin/auth/register_screen.dart';
+import 'package:pic_point/auth/login_screen.dart';
+import 'package:pic_point/auth/register_screen.dart';
 import 'package:pic_point/admin/home/add_place_screen.dart';
 import 'package:pic_point/admin/home/admin_home_screen.dart';
-import 'package:pic_point/admin/home/home_screen.dart';
-import 'package:pic_point/admin/home/place_details_screen.dart';
+import 'package:pic_point/user/home/home_screen.dart';
+import 'package:pic_point/user/home/place_details_screen.dart';
 import 'package:pic_point/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

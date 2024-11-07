@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pic_point/admin/home/place_details_screen.dart';
+import 'package:pic_point/user/home/place_details_screen.dart';
 import 'package:pic_point/app_theme.dart';
 import 'package:pic_point/widgets/deafult_elevated_botton.dart';
 import 'package:url_launcher/url_launcher.dart';
